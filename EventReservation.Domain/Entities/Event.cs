@@ -16,5 +16,24 @@ namespace EventReservation.Domain.Entities {
         public User Organizer { get; set; }
         public List<Reservation> Reservations { get; set; } = new List<Reservation>();
 
+        public (bool CanReserve, string? ErrorMessage) CanReserve(int userId, DateTime currentDate) {
+            if (EventDate < currentDate) {
+                return (false, "Não é possível reservar um evento que já ocorreu.");
+            }
+
+            var confirmedReservations = Reservations.Count(r => r.Status == ReservationStatus.Confirmed);
+
+            if (confirmedReservations >= Capacity) {
+                return (false, "Este evento atingiu a capacidade máxima de participantes.");
+            }
+
+            var alreadyReserved = Reservations.Any(r => r.UserId == userId && r.Status == ReservationStatus.Confirmed);
+
+            if (alreadyReserved) {
+                return (false, "Você já possui uma reserva confirmada para este evento.");
+            }
+
+            return (true, null);
+        }
     }
 }
