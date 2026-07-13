@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EventReservation.Domain.Entities {
-    internal class UserRole {
+    public enum UserRole {
+        Admin,
+        Organizer,
+        Participant
     }
 }

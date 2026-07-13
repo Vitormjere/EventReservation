@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EventReservation.Domain.Entities {
-    internal class ReservationStatus {
+    public enum ReservationStatus {
+        Confirmed,
+        Cancelled
     }
 }

@@ -5,6 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EventReservation.Domain.Entities {
-    internal class User {
+    public class User{
+
+        public int Id { get; private set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string PasswordHash { get; set; }
+        public UserRole Role { get; set; }
     }
 }
