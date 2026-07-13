@@ -1,6 +1,20 @@
 @EventReservation.Api_HostAddress = http://localhost:5009
 
-GET {{EventReservation.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+### Registrar novo usuário
+POST {{EventReservation.Api_HostAddress}}/api/auth/register
+Content-Type: application/json
 
-###
+{
+  "name": "João Silva",
+  "email": "joao@teste.com",
+  "password": "senha123"
+}
+
+### Login
+POST {{EventReservation.Api_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "joao@teste.com",
+  "password": "senha123"
+}
