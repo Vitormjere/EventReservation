@@ -70,11 +70,10 @@ using (var scope = app.Services.CreateScope()) {
         logger.LogWarning(ex, "Não foi possível verificar/criar o usuário Admin na inicialização.");
     }
 }
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) {
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-}
+app.MapOpenApi();
+app.MapScalarApiReference();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
