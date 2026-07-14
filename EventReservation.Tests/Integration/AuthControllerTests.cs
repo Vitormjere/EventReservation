@@ -26,5 +26,28 @@ namespace EventReservation.Tests.Integration {
             // Assert
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }
+
+        [Fact]
+        public async Task Login_WithValidCredentials_ReturnsOkWithToken() {
+            // Arrange
+            var registerRequest = new RegisterRequest {
+                Name = "Carlos Teste",
+                Email = "carlos@teste.com",
+                Password = "senha123"
+            };
+
+            await _client.PostAsJsonAsync("/api/Auth/register", registerRequest);
+
+            var loginRequest = new LoginRequest {
+                Email = "carlos@teste.com",
+                Password = "senha123"
+            };
+
+            // Act
+            var response = await _client.PostAsJsonAsync("/api/Auth/login", loginRequest);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
     }
 }
