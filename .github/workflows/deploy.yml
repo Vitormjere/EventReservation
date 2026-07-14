@@ -1,0 +1,35 @@
+name: Deploy EventReservation API to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restaurar dependencias
+        run: dotnet restore
+
+      - name: Compilar solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publicar API
+        run: dotnet publish EventReservation.Api/EventReservation.Api.csproj --configuration Release --no-build --output ./publish
+
+      - name: Deploy para Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'eventreservation-api-vitor'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
