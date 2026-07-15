@@ -62,6 +62,13 @@ Includes unit tests (isolated business rules and services) and integration tests
 
 `https://eventreservation-api-vitor-dugnc2fra6d3hne7.brazilsouth-01.azurewebsites.net`
 
+## Frontend
+
+A React frontend consuming this API is available at:
+`https://event-reservation-frontend.vercel.app`
+
+Repository: [EventReservationFrontend](https://github.com/Vitormjere/EventReservationFrontend)
+
 ## Author
 
 Vitor Miranda Jeremias — [GitHub](https://github.com/Vitormjere)
